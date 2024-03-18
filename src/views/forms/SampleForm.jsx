@@ -1,6 +1,6 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
-import UserInputStyles from '../styles/UserInputStyles'
+import UserInputStyles from '../../styles/UserInputStyles'
 
 const SampleForm = () => {
     const [name, setName] = useState('')

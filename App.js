@@ -4,6 +4,9 @@ import UserData from './src/views/UserData';
 import UserInput from './src/forms/UserInput';
 import SampleForm from './src/forms/SampleForm';
 import Flatlist from './src/components/commons/Flatlist';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 export default function App() {
@@ -11,24 +14,18 @@ export default function App() {
   const changeName = () => {
     setName("Abdul Hannan");
   }
+  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
   return (
-    <View>
-      <ScrollView>
-        <Text style={styles.container}>Here is the data of our user</Text>
-
-        <UserData title={name} />
-        <View>
-          <Button title='Update State' onPress={() => changeName()} />
-        </View>
-        <UserInput />
-        <View>
-          <SampleForm />
-        </View>
-        <View>
-          <Flatlist />
-        </View>
-      </ScrollView>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='User' component={UserInput}/>
+      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name='User' component={UserInput} />
+        <Tab.Screen name='Input' component={SampleForm} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
